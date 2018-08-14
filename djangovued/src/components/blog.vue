@@ -14,10 +14,10 @@
     <div class="div" >
       <button v-if="!showForm"   v-on:click="showFormHandel"  > add post </button>
       <button v-on:click="logoutHandle" > sign out </button>
-    </div>
-    <div v-if="showForm">
-      <textarea rows="3" cols="15" placeholder="  post's title "  v-model="this.newPost.title"  ></textarea>
-      <textarea rows="10" cols="20" placeholder="your post" v-model="this.newPost.body"  ></textarea>
+    </div >
+    <div class="divf"  v-if="showForm">
+      <textarea rows="3" cols="5" placeholder="  post's title "  v-model="title" @keyup.enter="addPostHandel" ></textarea>
+      <textarea rows="5" cols="10" placeholder="your post" v-model="body" @keyup.enter="addPostHandel" ></textarea>
       <button type="button" v-on:click="addPostHandel"  @click="showFormHandel" >submit</button>
 
     </div>
@@ -32,6 +32,9 @@
 
   export default {
     name: "blog",
+    props:{
+
+    },
 
 
     computed: {
@@ -44,14 +47,13 @@
 
     data() {
       return {
-        newPost:{
-          title:'',
-          body: '',
-          id: 0,
-        },
+        id:0,
+        title: '',
+        body: ''
+        }
 
-      }
-    },
+      },
+
 
     created() {
         this.$store.dispatch('retrievePosts').then(response=>
@@ -86,12 +88,15 @@
       },
 
       addPostHandel(){
-        this.newPost.id= this.$store.state.posts.length;
-        this.$store.dispatch('addPost',this.newPost).then(response=>{
+        this.id= this.$store.state.posts.length;
+        this.$store.dispatch('addPost',{
+          'id':this.$store.state.posts.length,
+          'title': this.title,
+          'body': this.body}).then(response=>{
 
 
         })
-          .catch(error)
+
       },
 
 
@@ -110,10 +115,8 @@
   .body{
     display: grid;
     grid-template-columns: 1fr;
-    margin-top: 200px;
     justify-self: center;
-    width: 600px;
-    height: 400px;
+
     box-sizing: border-box;
     transition: all 3s ease-in-out 0s;
     -webkit-transition: width 2s, height 4s;
@@ -138,12 +141,13 @@
 
   button {
 
-    margin-right: 1em;
-    width: 80px;
-    height: 50px;
+
+    width: 60px;
+    height: 30px;
     background-color: rgba(0, 0, 0, 0.3);
     border: none;
     text-align: center;
+    margin-top: 10px;
     display: inline-block;
     color: white;
     font-family: inherit;
@@ -160,12 +164,14 @@
     transform: translateY(4px);
 
   }
+  .divf{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-self: center;
 
+  }
   textarea {
     margin-top: 10px;
-    margin-left: 50px;
-    width: 500px;
-    height: 100px;
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;

@@ -13,7 +13,7 @@
     <transition name="router-animation" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
       <router-view></router-view>
     </transition>
-     <div class="footer">  <h3> no copy right @ made by Rostom </h3> </div>
+     <div class="footer">  <p> no copy right @ made by Rostom </p> </div>
   </div>
 </template>
 
@@ -35,12 +35,12 @@
     background-color: #cddcdc;
 
     grid-template-areas:
-      "nav content content"
-      "nav content content"
-      "footer footer footer";
+      "nav content   "
+      "nav content   "
+      "footer footer ";
 
-    grid-template-columns: 100px 1fr 200px;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100px 1fr ;
+    grid-template-rows: auto 1fr ;
     grid-gap: 10px;
 
     height: 100vh;
@@ -52,14 +52,17 @@
 
   .nav {
     grid-area: nav;
-    background-color: gray;
+    background: linear-gradient(270deg, #859691, #b6f2e0, #c9ec9a);
+    -webkit-animation: AnimationName 5s ease infinite;
+    -moz-animation: AnimationName 5s ease infinite;
+    animation: AnimationName 5s ease infinite;
     box-sizing: border-box;
-    transition: all 0.3s ease-out;
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-items: stretch;
+    background-size: 400% 400%;
   }
 
 
@@ -102,26 +105,56 @@
   .footer {
     height: 100px;
     grid-area: footer;
+    display: flex;
     flex-direction: row;
     justify-content: center;
 
     align-items: center;
-    background-color: black;
-  }
+    background: linear-gradient(270deg, #859691, #b6f2e0, #c9ec9a);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 5s ease infinite;
+    -moz-animation: AnimationName 5s ease infinite;
+    animation: AnimationName 5s ease infinite;
 
+  }
   p{
     font-style: normal;
-    color:white;
+    color:black;
+    justify-self: center;
 
   }
   p:hover {
         font-size: 0.9em;
         text-transform: uppercase;
-
+        color:red;
 
 
   }
-
-
+  @-webkit-keyframes AnimationName {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+  }
+  @-moz-keyframes AnimationName {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+  }
+  @-o-keyframes AnimationName {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 0 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0 50%
+    }
+  }
 </style>
 
